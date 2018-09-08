@@ -15,7 +15,7 @@ class CardList extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   componentDidMount() {
     this.getList();
@@ -24,8 +24,8 @@ class CardList extends Component {
   render() {
     return (
       <div className="cardList">
-        {this.state.pkmnList.map(pkmn => {
-          return <Card {...pkmn} />;
+        {this.state.pkmnList.map((pkmn, key) => {
+          return <Card key={key} {...pkmn} />;
         })}
       </div>
     );

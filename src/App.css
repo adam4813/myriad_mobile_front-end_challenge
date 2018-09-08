@@ -32,12 +32,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-gap: 8px;
-    padding: 48px 48px 0px;
+    padding: 32px 48px 0px;
 }
 
 .App {
     max-width: 100%;
-    background-color: rgba(85, 166, 156, 1);
     height: 100%;
 }
 
@@ -46,5 +45,147 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
+    background-color: rgba(85, 166, 156, 1);
+    min-width: 550px;
+}
+
+.navButton {
+    height: 64px;
+    width: 64px;
+    background-color: rgba(0, 0, 0, .08);
+    border-radius: 64px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.navButton:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.navButton span {
+    height: 16px;
+    width: 16px;
+}
+
+#forwardButton {
+    position: absolute;
+    top: 56px;
+    right: 72px;
+}
+
+#backButton {
+    position: absolute;
+    top: 56px;
+    left: 72px;
+}
+
+.searchBar {
+    padding-top: 40px;
+}
+
+.searchBox {
+    margin: 0 auto;
+    height: 96px;
+    width: 456px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 7px;
+}
+
+.searchBox span {
+    padding: 40px;
+    height: 17px;
+    width: 17px;
+    color: rgba(255, 255, 255, 1);
+    vertical-align: top;
+}
+
+.searchBox input {
+    width: 280px;
+    font-family: 'Roboto';
+    font-size: 72px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+    line-height: 24px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    margin: 5px;
+    outline: none;
+}
+
+#bottomNavBar {
+    display: none;
+}
+
+@media screen and (max-width: 790px) {
+    body {
+        min-width: 320px;
+        padding: 0px 8px;
+    }
+
+    .card {
+        height: 196px;
+        width: 148px;
+        margin: 4px;
+    }
+
+    .cardList {
+        grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+        padding: 0px;
+        grid-gap: 0px;
+    }
+
+    #bottomNavBar {
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 48px;
+        width: 100%;
+        background-color: rgba(64, 126, 118, 0.8);
+    }
+
+    .navButton {
+        height: 52px;
+        width: 96px;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 0px;
+        z-index: 1;
+    }
+
+    #forwardButton {
+        bottom: 0px;
+        top: auto;
+        right: 32px;
+        text-align: right;
+    }
+
+    #backButton {
+        bottom: 0px;
+        top: auto;
+        left: 32px;
+        text-align: left;
+    }
+
+    .searchBar {
+        padding-top: 16px;
+    }
+
+    .searchBox {
+        height: 48px;
+        width: 100%;
+    }
+
+    .searchBox input {
+        width: 131px;
+        font-size: 18px;
+        margin: 12px;
+    }
+
+    .searchBox span {
+        padding: 16px;
+    }
 }
