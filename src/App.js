@@ -14,7 +14,8 @@ import "./App.css";
 class App extends Component {
   state = {
     nextPage: "",
-    prevPage: ""
+    prevPage: "",
+    currentPage: "1"
   };
 
   setNextPage = next => {
@@ -29,12 +30,24 @@ class App extends Component {
     }
   };
 
+  setCurrentPage = current => {
+    if (current !== null) {
+      this.setState({ currentPage: current });
+    }
+  };
+
   moveListBack = () => {
     this.props.history.push("/" + this.state.prevPage);
     window.location.reload();
   };
+
   moveListForward = () => {
     this.props.history.push("/" + this.state.nextPage);
+    window.location.reload();
+  };
+
+  returnToList = () => {
+    this.props.history.push("/" + this.state.currentPage);
     window.location.reload();
   };
 
@@ -43,7 +56,12 @@ class App extends Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/pokemon/:id" component={PkmnDetail} />
+            <Route path="/pokemon/:id">
+              <div>
+                <BackButton onClick={this.returnToList} />
+                <Route component={PkmnDetail} />
+              </div>
+            </Route>
             <Route>
               <div>
                 <BackButton onClick={this.moveListBack} />
@@ -56,6 +74,7 @@ class App extends Component {
                       {...props}
                       setNextPage={this.setNextPage}
                       setPrevPage={this.setPrevPage}
+                      setCurrentPage={this.setCurrentPage}
                     />
                   )}
                 />
