@@ -15,7 +15,8 @@ class App extends Component {
   state = {
     nextPage: "",
     prevPage: "",
-    currentPage: "1"
+    currentPage: "1",
+    searchTerm: ""
   };
 
   setNextPage = next => {
@@ -36,18 +37,33 @@ class App extends Component {
     }
   };
 
+  setSearchtPage = searchTerm => {
+    if (searchTerm !== null) {
+      this.setState({ searchTerm: "search/" + searchTerm + "/" });
+    }
+  };
+
+  startSearch = searchTerm => {
+    if (searchTerm !== null) {
+      this.props.history.push("/search/" + searchTerm + "/");
+      window.location.reload();
+    }
+  };
+
   moveListBack = () => {
-    this.props.history.push("/" + this.state.prevPage);
+    this.props.history.push("/" + this.state.searchTerm + this.state.prevPage);
     window.location.reload();
   };
 
   moveListForward = () => {
-    this.props.history.push("/" + this.state.nextPage);
+    this.props.history.push("/" + this.state.searchTerm + this.state.nextPage);
     window.location.reload();
   };
 
   returnToList = () => {
-    this.props.history.push("/" + this.state.currentPage);
+    this.props.history.push(
+      "/" + this.state.searchTerm + this.state.currentPage
+    );
     window.location.reload();
   };
 
@@ -62,12 +78,38 @@ class App extends Component {
                 <Route component={PkmnDetail} />
               </div>
             </Route>
-            <Route>
+            <Route path="/">
               <div>
                 <BackButton onClick={this.moveListBack} />
-                <SearchBox />
                 <ForwardButton onClick={this.moveListForward} />
                 <Route
+                  path="/search/:name/:page?"
+                  render={props => (
+                    <SearchBox {...props} onStartSearch={this.startSearch} />
+                  )}
+                />
+                <Route
+                  path="/search/:name/:page?"
+                  render={props => (
+                    <CardList
+                      {...props}
+                      setNextPage={this.setNextPage}
+                      setPrevPage={this.setPrevPage}
+                      setCurrentPage={this.setCurrentPage}
+                      setSearchPage={this.setSearchtPage}
+                      search={true}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/:page?"
+                  render={props => (
+                    <SearchBox {...props} onStartSearch={this.startSearch} />
+                  )}
+                />
+                <Route
+                  exact
                   path="/:page?"
                   render={props => (
                     <CardList
