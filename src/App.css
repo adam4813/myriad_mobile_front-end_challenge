@@ -124,7 +124,7 @@ body {
     display: none;
 }
 
-.pkmnType {
+.card .pkmnType {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
@@ -136,13 +136,115 @@ body {
     padding: 4px;
 }
 
-
-.pkmnTypesHolder {
+.card .pkmnTypesHolder {
     position: absolute;
     right: 0px;
     display: inline-block;
     padding-right: 24px;
 }
+
+.details {
+    position: relative;
+    height: 784px;
+    width: 664px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 2px;
+    margin: 168px auto 72px;
+}
+.details header {
+    height: 55px;
+    border-bottom: 1px solid rgba(233, 233, 233, 1);
+}
+
+.detailsHeader {
+    position: absolute;
+    top: 17px;
+    left: 24px;
+}
+
+.details .nameDetail {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.85);
+    text-align: left;
+    line-height: 24px;
+    padding-right: 12px;
+}
+
+.details .idDetail {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.32);
+    text-align: left;
+    line-height: 24px;
+}
+
+.details .pkmnType {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    height: 22px;
+    width: 20px;
+    font-family: 'San Francisco';
+    font-size: 12px;
+    margin: 4px;
+    padding: 4px;
+    line-height: 20px;
+}
+
+.details .pkmnTypesHolder {
+    position: absolute;
+    top: 19px;
+    right: 0px;
+    display: inline-block;
+    padding-right: 16px;
+}
+
+.detailsImg {
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 72px;
+    height: 130px;
+    width: 130px;
+}
+
+.statsBox {
+    position: absolute;
+    padding-right: 72px;
+    right: 0px;
+    padding-top: 34px;
+}
+.statName {
+    float: left;
+}
+
+.statBarHolder {
+    height: 18px;
+    margin-bottom: 4px;
+}
+
+.statProgressBarHolder {
+    display: inline-block;
+    float: right;
+    height: 18px;
+    width: 188px;
+    margin-left: 48px;
+    background-color: rgba(146, 146, 146, 1);
+}
+
+.statProgressBarValue {
+    background-color: rgba(0, 146, 0, 1);
+}
+.statProgressBarValue span {
+    padding-left: 6px;
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Roboto';
+    font-size: 14px;
+}
+
 
 @media screen and (max-width: 790px) {
     body {
@@ -213,7 +315,7 @@ body {
         padding: 16px;
     }
 
-    .pkmnType {
+    .card .pkmnType {
         display: none;
     }
 }

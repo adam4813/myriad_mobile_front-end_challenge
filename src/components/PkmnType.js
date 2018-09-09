@@ -95,7 +95,7 @@ class PkmnType extends Component {
         className="pkmnType"
         style={{
           borderColor: typeMeta.color,
-          backgroundColor: typeMeta.color + "11",
+          backgroundColor: typeMeta.color + "33",
           color: typeMeta.color
         }}
       >

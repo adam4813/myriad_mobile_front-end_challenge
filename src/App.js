@@ -59,11 +59,11 @@ class App extends Component {
                     />
                   )}
                 />
+                <div id="bottomNavBar" />
               </div>
             </Route>
           </Switch>
         </Router>
-        <div id="bottomNavBar" />
       </div>
     );
   }
