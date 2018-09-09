@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router";
+import { Switch, Route, withRouter } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import PkmnDetail from "./components/PkmnDetail";
@@ -12,6 +12,32 @@ import BackButton from "./components/navigation/BackButton";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    nextPage: "",
+    prevPage: ""
+  };
+
+  setNextPage = next => {
+    if (next !== null) {
+      this.setState({ nextPage: next });
+    }
+  };
+
+  setPrevPage = prev => {
+    if (prev !== null) {
+      this.setState({ prevPage: prev });
+    }
+  };
+
+  moveListBack = () => {
+    this.props.history.push("/" + this.state.prevPage);
+    window.location.reload();
+  };
+  moveListForward = () => {
+    this.props.history.push("/" + this.state.nextPage);
+    window.location.reload();
+  };
+
   render() {
     return (
       <div className="App">
@@ -20,18 +46,27 @@ class App extends Component {
             <Route path="/pokemon/:id" component={PkmnDetail} />
             <Route>
               <div>
-                <BackButton />
+                <BackButton onClick={this.moveListBack} />
                 <SearchBox />
-                <ForwardButton />
-                <Route path="/" component={CardList} />
+                <ForwardButton onClick={this.moveListForward} />
+                <Route
+                  path="/:page?"
+                  render={props => (
+                    <CardList
+                      {...props}
+                      setNextPage={this.setNextPage}
+                      setPrevPage={this.setPrevPage}
+                    />
+                  )}
+                />
               </div>
             </Route>
           </Switch>
         </Router>
-        <div id="bottomNavBar"/>
+        <div id="bottomNavBar" />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

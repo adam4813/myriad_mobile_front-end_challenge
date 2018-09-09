@@ -18,7 +18,7 @@ class PkmnType extends Component {
       name: "GRASS",
       color: "#78C850"
     },
-    electic: {
+    electric: {
       name: "ELECTRIC",
       color: "#F8D030"
     },
