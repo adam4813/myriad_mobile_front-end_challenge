@@ -102,7 +102,7 @@ class App extends Component {
                 <div id="bottomNavBar" />
               </div>
             </Route>
-            <Route exact path="/">
+            <Route path="/">
               <div>
                 <BackButton onClick={this.moveListBack} />
                 <ForwardButton onClick={this.moveListForward} />
