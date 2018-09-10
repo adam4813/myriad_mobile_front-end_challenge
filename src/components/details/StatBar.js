@@ -8,7 +8,10 @@ class StatBar extends Component {
         <div className="statProgressBarHolder">
           <div
             className="statProgressBarValue"
-            style={{ width: this.props.val / 250 * 100 + "%" }}
+            style={{
+              width: this.props.val / 250 * 100 + "%",
+              backgroundColor: "rgb(" + this.props.baseColor.toString() + ")"
+            }}
           >
             <span>{this.props.val}</span>
           </div>

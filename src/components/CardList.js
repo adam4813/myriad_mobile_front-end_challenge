@@ -105,6 +105,8 @@ class CardList extends Component {
   }
 
   render() {
+    document.getElementsByTagName("body")[0].style.backgroundColor =
+      "rgba(85, 166, 156, 1)";
     return (
       <div className="cardList">
         {this.state.pkmnList.map((pkmn, key) => {

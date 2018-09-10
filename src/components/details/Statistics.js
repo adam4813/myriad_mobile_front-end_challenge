@@ -6,12 +6,36 @@ class Statistics extends Component {
   render() {
     return (
       <div className="statsBox">
-        <StatBar name="HP" val={this.props.stats.hp} />
-        <StatBar name="Speed" val={this.props.stats.speed} />
-        <StatBar name="Attack" val={this.props.stats.attack} />
-        <StatBar name="Defense" val={this.props.stats.defense} />
-        <StatBar name="Sp Atk" val={this.props.stats["special-attack"]} />
-        <StatBar name="Sp Def" val={this.props.stats["special-defense"]} />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="HP"
+          val={this.props.stats.hp}
+        />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="Speed"
+          val={this.props.stats.speed}
+        />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="Attack"
+          val={this.props.stats.attack}
+        />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="Defense"
+          val={this.props.stats.defense}
+        />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="Sp Atk"
+          val={this.props.stats["special-attack"]}
+        />
+        <StatBar
+          baseColor={this.props.baseColor}
+          name="Sp Def"
+          val={this.props.stats["special-defense"]}
+        />
       </div>
     );
   }
