@@ -378,11 +378,13 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
         padding: 0px;
         grid-gap: 0px;
+        padding-top: 80px;
+        padding-bottom: 48px;
     }
 
     #bottomNavBar {
         display: block;
-        position: absolute;
+        position: fixed;
         bottom: 0px;
         left: 0px;
         height: 48px;
@@ -400,6 +402,7 @@ body {
     }
 
     #forwardButton {
+        position: fixed;
         bottom: 0px;
         top: auto;
         right: 32px;
@@ -407,6 +410,7 @@ body {
     }
 
     #backButton {
+        position: fixed;
         bottom: 0px;
         top: auto;
         left: 32px;
@@ -414,7 +418,12 @@ body {
     }
 
     .searchBar {
+        position: fixed;
         padding-top: 16px;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(85, 166, 156, 1);
+        height: 56px;
     }
 
     .searchBox {
