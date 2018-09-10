@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class SearchBox extends Component {
   handleKeyPress = e => {
     if (e.key === "Enter") {
-      this.props.onStartSearch(e.target.value);
+      this.props.history.push("/search/" + e.target.value + "/");
+      this.props.setSearchPage(e.target.value);
     }
   };
+
   render() {
     return (
       <div className="searchBar">
@@ -25,4 +28,4 @@ class SearchBox extends Component {
   }
 }
 
-export default SearchBox;
+export default withRouter(SearchBox);

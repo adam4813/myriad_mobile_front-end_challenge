@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 import PkmnType from "./PkmnType";
@@ -97,4 +98,4 @@ class PkmnDetail extends Component {
   }
 }
 
-export default PkmnDetail;
+export default withRouter(PkmnDetail);

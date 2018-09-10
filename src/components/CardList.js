@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 import Card from "./Card";
@@ -10,60 +11,61 @@ class CardList extends Component {
     searchTerm: this.props.match.params.name
   };
 
-  getList = () => {
+  pageRangeClamp(page, last) {
+    if (page > last) {
+      return last;
+    } else if (page < 1) {
+      return 1;
+    }
+    return page;
+  }
+
+  updateState(page, response) {
+    this.props.setCurrentPage(page);
+    this.props.setPrevPage(page - 1 >= 1 ? page - 1 : 1);
+    this.props.setNextPage(
+      page + 1 <= response.data.meta.last_page
+        ? page + 1
+        : response.data.meta.last_page
+    );
+    this.props.setLastPage(response.data.meta.last_page);
+    this.setState({
+      pkmnList: response.data.data,
+      page: page
+    });
+  }
+
+  getList = page => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon", {
-        params: { page: this.state.page }
+        params: { page: page }
       })
       .then(response => {
-        let currPage = parseInt(this.state.page, 10);
-        if (currPage > response.data.meta.last_page) {
-          currPage = response.data.meta.last_page;
+        let validPage = this.pageRangeClamp(page, response.data.meta.last_page);
+        if (validPage !== page) {
+          this.getList(validPage);
+          return;
         }
-        this.props.setCurrentPage(currPage);
-        this.props.setPrevPage(
-          currPage - 1 >= 1 ? currPage - 1 : 1
-        );
-        this.props.setNextPage(
-          currPage + 1 <= response.data.meta.last_page
-            ? currPage + 1
-            : response.data.meta.last_page
-        );
-        this.setState({
-          pkmnList: response.data.data,
-          page: currPage
-        });
+        this.updateState(validPage, response);
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  getSearch = () => {
+  getSearch = (page, term) => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon", {
-        params: { name: this.state.searchTerm, page: this.state.page }
+        params: { name: term, page: page }
       })
       .then(response => {
-        console.log(response.data);
-        this.props.setSearchPage(this.state.searchTerm);
-        let currPage = parseInt(this.state.page, 10);
-        if (currPage > response.data.meta.last_page) {
-          currPage = response.data.meta.last_page;
+        let validPage = this.pageRangeClamp(page, response.data.meta.last_page);
+        if (validPage !== page) {
+          this.getSearch(validPage);
+          return;
         }
-        this.props.setCurrentPage(currPage);
-        this.props.setPrevPage(
-          currPage - 1 >= 1 ? currPage - 1 : 1
-        );
-        this.props.setNextPage(
-          currPage + 1 <= response.data.meta.last_page
-            ? currPage + 1
-            : response.data.meta.last_page
-        );
-        this.setState({
-          pkmnList: response.data.data,
-          page: currPage
-        });
+        this.props.setSearchPage(term);
+        this.updateState(validPage, response);
       })
       .catch(error => {
         console.log(error);
@@ -71,11 +73,34 @@ class CardList extends Component {
   };
 
   componentDidMount() {
+    let page = parseInt(this.state.page, 10);
     if (this.props.search) {
-      this.getSearch();
+      this.getSearch(page, this.state.searchTerm);
+    } else {
+      this.getList(page);
     }
-    else {
-      this.getList();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.match.params.page !== prevProps.match.params.page ||
+      this.props.match.params.name !== prevProps.match.params.name
+    ) {
+      let page = parseInt(this.props.match.params.page, 10);
+      let lastPage = this.props.getLastPage();
+      if (page > lastPage) {
+        page = lastPage;
+      } else if (page < 1) {
+        page = 1;
+      }
+      if (this.props.match.params.name !== prevProps.match.params.name) {
+        page = 1;
+      }
+      if (this.props.search) {
+        this.getSearch(page, this.props.match.params.name);
+      } else {
+        this.getList(page);
+      }
     }
   }
 
@@ -90,4 +115,4 @@ class CardList extends Component {
   }
 }
 
-export default CardList;
+export default withRouter(CardList);

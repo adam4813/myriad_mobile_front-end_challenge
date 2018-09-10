@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import PkmnDetail from "./components/PkmnDetail";
 import CardList from "./components/CardList";
@@ -15,7 +14,8 @@ class App extends Component {
   state = {
     nextPage: "",
     prevPage: "",
-    currentPage: "1",
+    currPage: "1",
+    lastPage: "1",
     searchTerm: ""
   };
 
@@ -33,8 +33,18 @@ class App extends Component {
 
   setCurrentPage = current => {
     if (current !== null) {
-      this.setState({ currentPage: current });
+      this.setState({ currPage: current });
     }
+  };
+
+  setLastPage = last => {
+    if (last !== null) {
+      this.setState({ lastPage: last });
+    }
+  };
+
+  getLastPage = () => {
+    return this.state.lastPage;
   };
 
   setSearchtPage = searchTerm => {
@@ -43,94 +53,55 @@ class App extends Component {
     }
   };
 
-  startSearch = searchTerm => {
-    if (searchTerm !== null) {
-      this.props.history.push("/search/" + searchTerm + "/");
-      window.location.reload();
-    }
-  };
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
+  }
 
-  moveListBack = () => {
-    this.props.history.push("/" + this.state.searchTerm + this.state.prevPage);
-    window.location.reload();
-  };
-
-  moveListForward = () => {
-    this.props.history.push("/" + this.state.searchTerm + this.state.nextPage);
-    window.location.reload();
-  };
-
-  returnToList = () => {
-    this.props.history.push(
-      "/" + this.state.searchTerm + this.state.currentPage
+  renderMainRouteWithPath(path, search) {
+    return (
+      <Route path={path}>
+        <div>
+          <BackButton
+            prevPage={"/" + this.state.searchTerm + this.state.prevPage}
+          />
+          <ForwardButton
+            nextPage={"/" + this.state.searchTerm + this.state.nextPage}
+          />
+          <SearchBox setSearchPage={this.setSearchtPage} />
+          <CardList
+            setNextPage={this.setNextPage}
+            setPrevPage={this.setPrevPage}
+            setCurrentPage={this.setCurrentPage}
+            setLastPage={this.setLastPage}
+            getLastPage={this.getLastPage}
+            setSearchPage={this.setSearchtPage}
+            search={search}
+          />
+          <div id="bottomNavBar" />
+        </div>
+      </Route>
     );
-    window.location.reload();
-  };
+  }
 
   render() {
     return (
       <div className="App">
-        <Router>
-          <Switch>
-            <Route path="/pokemon/:id">
-              <div>
-                <BackButton onClick={this.returnToList} detailsPage={true}/>
-                <Route component={PkmnDetail} />
-              </div>
-            </Route>
-            <Route path="/search/:name?/:page?">
-              <div>
-                <BackButton onClick={this.moveListBack} />
-                <ForwardButton onClick={this.moveListForward} />
-                <Route
-                  render={props => (
-                    <SearchBox {...props} onStartSearch={this.startSearch} />
-                  )}
-                />
-                <Route
-                  render={props => (
-                    <CardList
-                      {...props}
-                      setNextPage={this.setNextPage}
-                      setPrevPage={this.setPrevPage}
-                      setCurrentPage={this.setCurrentPage}
-                      setSearchPage={this.setSearchtPage}
-                      search={true}
-                    />
-                  )}
-                />
-                <div id="bottomNavBar" />
-              </div>
-            </Route>
-            <Route path="/">
-              <div>
-                <BackButton onClick={this.moveListBack} />
-                <ForwardButton onClick={this.moveListForward} />
-                <Route
-                  render={props => (
-                    <SearchBox {...props} onStartSearch={this.startSearch} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/:page?"
-                  render={props => (
-                    <CardList
-                      {...props}
-                      setNextPage={this.setNextPage}
-                      setPrevPage={this.setPrevPage}
-                      setCurrentPage={this.setCurrentPage}
-                    />
-                  )}
-                />
-                <div id="bottomNavBar" />
-              </div>
-            </Route>
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/pokemon/:id">
+            <div>
+              <BackButton
+                prevPage={"/" + this.state.searchTerm + this.state.currPage}
+                detailsPage={true}
+              />
+              <Route component={PkmnDetail} xyz={"abc"} />
+            </div>
+          </Route>
+          {this.renderMainRouteWithPath("/search/:name/:page?", true)}
+          {this.renderMainRouteWithPath("/:page?", false)}
+        </Switch>
       </div>
     );
   }
 }
 
-export default withRouter(App);
+export default App;
