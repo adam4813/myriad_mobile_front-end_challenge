@@ -78,18 +78,16 @@ class App extends Component {
                 <Route component={PkmnDetail} />
               </div>
             </Route>
-            <Route path="/">
+            <Route path="/search/:name?/:page?">
               <div>
                 <BackButton onClick={this.moveListBack} />
                 <ForwardButton onClick={this.moveListForward} />
                 <Route
-                  path="/search/:name/:page?"
                   render={props => (
                     <SearchBox {...props} onStartSearch={this.startSearch} />
                   )}
                 />
                 <Route
-                  path="/search/:name/:page?"
                   render={props => (
                     <CardList
                       {...props}
@@ -101,9 +99,14 @@ class App extends Component {
                     />
                   )}
                 />
+                <div id="bottomNavBar" />
+              </div>
+            </Route>
+            <Route exact path="/">
+              <div>
+                <BackButton onClick={this.moveListBack} />
+                <ForwardButton onClick={this.moveListForward} />
                 <Route
-                  exact
-                  path="/:page?"
                   render={props => (
                     <SearchBox {...props} onStartSearch={this.startSearch} />
                   )}

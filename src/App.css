@@ -383,11 +383,12 @@ body {
     }
 
     .navButton {
-        height: 52px;
+        height: 48px;
         width: 96px;
         background-color: rgba(0, 0, 0, 0);
         border-radius: 0px;
         z-index: 1;
+        padding: 0px 16px;
     }
 
     #forwardButton {
@@ -414,7 +415,7 @@ body {
     }
 
     .searchBox input {
-        width: 131px;
+        width: 75%;
         font-size: 18px;
         margin: 12px;
     }
