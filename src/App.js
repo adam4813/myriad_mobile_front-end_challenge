@@ -74,7 +74,7 @@ class App extends Component {
           <Switch>
             <Route path="/pokemon/:id">
               <div>
-                <BackButton onClick={this.returnToList} />
+                <BackButton onClick={this.returnToList} detailsPage={true}/>
                 <Route component={PkmnDetail} />
               </div>
             </Route>
