@@ -427,4 +427,114 @@ body {
     .card .pkmnType {
         display: none;
     }
+
+    .details .pkmnTypesHolder {
+        left: 16px;
+    }
+
+    .details {
+        position: absolute;
+        height: 536px;
+        width: auto;
+        min-width: 304px;
+        right: 8px;
+        left: 8px;
+        margin: 64px 8px 16px;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .detailsContainer {
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .detailsNameJumbo {
+        display: none;
+    }
+
+    .detailsHeader {
+        position: fixed;
+        top: 26px;
+        left: 56px;
+    }
+
+    .details .nameDetail {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .details .idDetail {
+        font-size: 18px;
+        color: rgba(255, 255, 255, .85);
+    }
+
+    .detailsImg {
+        position: fixed;
+        top: 8px;
+        right: 24px;
+        left: auto;
+        height: 96px;
+        width: 96px;
+    }
+
+    .statsBox {
+        position: relative;
+        padding-right: 8px;
+        padding-left: 8px;
+        right: auto;
+        padding-top: 34px;
+        width: 95%;
+    }
+
+    .statName {
+        font-weight: normal;
+    }
+
+    .statBarHolder {
+        height: 18px;
+        margin-bottom: 4px;
+    }
+
+    .statProgressBarHolder {
+        margin-left: 24px;
+    }
+
+    .detailsBio {
+        position: relative;
+        top: 24px;
+        left: 16px;
+        padding-right: 24px;
+        width: auto;
+    }
+
+    .detailsSection {
+        position: relative;
+        top: 32px;
+        left: 16px;
+    }
+
+    .detailsSection header {
+        width: auto;
+        color: white;
+        margin: 0px;
+        margin-right: 24px;
+
+    }
+
+    #profile {
+        top: 32px;
+    }
+
+    #whenAttacked {
+        top: 32px;
+    }
+
+    .profileEntry {
+        width: 216px;
+    }
+
+    .entryValueHolder {
+        padding-right: 0px;
+    }
 }
