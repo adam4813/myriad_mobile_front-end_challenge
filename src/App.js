@@ -51,6 +51,9 @@ class App extends Component {
     if (searchTerm !== null) {
       this.setState({ searchTerm: "search/" + searchTerm + "/" });
     }
+    if (searchTerm === "") {
+      this.setState({ searchTerm: "" });
+    }
   };
 
   shouldComponentUpdate(nextProps, nextState) {

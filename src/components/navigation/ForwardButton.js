@@ -5,10 +5,7 @@ class ForwardButton extends Component {
   render() {
     return (
       <Link to={this.props.nextPage} style={{ textDecoration: "none" }}>
-        <div
-          className="navButton"
-          id="forwardButton"
-        >
+        <div className="navButton" id="forwardButton">
           <div>
             <span className="fa fa-arrow-right" />
           </div>
