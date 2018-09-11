@@ -63,11 +63,9 @@ class PkmnDetail extends Component {
           <div className="detailsContainer">
             <img
               id={this.state.name + "imageID"}
-              crossOrigin="anonymous"
               className="detailsImg"
               src={this.state.image}
               alt={this.state.name + " image"}
-              onLoad={this.handleOnLoad}
             />
             <Statistics
               baseColor={this.state.baseColor}

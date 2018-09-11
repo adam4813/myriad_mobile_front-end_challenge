@@ -4,9 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import PkmnDetail from "./components/PkmnDetail";
 import CardList from "./components/CardList";
 
-import SearchBox from "./components/navigation/SearchBox";
-import ForwardButton from "./components/navigation/ForwardButton";
-import BackButton from "./components/navigation/BackButton";
+import NavHeader from "./components/NavHeader";
 
 import "./App.css";
 
@@ -47,7 +45,7 @@ class App extends Component {
     return this.state.lastPage;
   };
 
-  setSearchtPage = searchTerm => {
+  setSearchPage = searchTerm => {
     if (searchTerm !== null) {
       this.setState({ searchTerm: "search/" + searchTerm + "/" });
     }
@@ -56,28 +54,23 @@ class App extends Component {
     }
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-
   renderMainRouteWithPath(path, search) {
     return (
       <Route path={path}>
         <div>
-          <BackButton
+          <NavHeader
             prevPage={"/" + this.state.searchTerm + this.state.prevPage}
-          />
-          <ForwardButton
             nextPage={"/" + this.state.searchTerm + this.state.nextPage}
+            setSearchPage={this.setSearchPage}
+            searchBox={true}
           />
-          <SearchBox setSearchPage={this.setSearchtPage} />
           <CardList
             setNextPage={this.setNextPage}
             setPrevPage={this.setPrevPage}
             setCurrentPage={this.setCurrentPage}
             setLastPage={this.setLastPage}
             getLastPage={this.getLastPage}
-            setSearchPage={this.setSearchtPage}
+            setSearchPage={this.setSearchPage}
             search={search}
           />
           <div id="bottomNavBar" />
@@ -92,11 +85,11 @@ class App extends Component {
         <Switch>
           <Route path="/pokemon/:id">
             <div>
-              <BackButton
+              <NavHeader
                 prevPage={"/" + this.state.searchTerm + this.state.currPage}
-                detailsPage={true}
+                searchBox={false}
               />
-              <Route component={PkmnDetail} xyz={"abc"} />
+              <Route component={PkmnDetail} />
             </div>
           </Route>
           {this.renderMainRouteWithPath("/search/:name/:page?", true)}
