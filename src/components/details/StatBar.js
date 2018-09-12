@@ -13,7 +13,7 @@ class StatBar extends Component {
               backgroundColor: "rgb(" + this.props.baseColor.toString() + ")"
             }}
           >
-            <span>{this.props.val}</span>
+            <span className="statBarValueOverlay">{this.props.val}</span>
           </div>
         </div>
       </div>

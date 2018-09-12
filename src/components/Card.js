@@ -8,11 +8,10 @@ class Card extends Component {
     return (
       <div className="card">
         <Link
-          className="cardLink"
           to={"/pokemon/" + this.props.id}
           style={{ textDecoration: "none" }}
         >
-          <header>{this.props.name}</header>
+          <header className="cardHeader">{this.props.name}</header>
           <div className="imgHolder">
             <img src={this.props.image} alt={this.props.name + " image"} />
           </div>

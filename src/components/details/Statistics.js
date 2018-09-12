@@ -5,7 +5,7 @@ import StatBar from "./StatBar";
 class Statistics extends Component {
   render() {
     return (
-      <div className="statsBox">
+      <section className="statsBox">
         <StatBar
           baseColor={this.props.baseColor}
           name="HP"
@@ -36,7 +36,7 @@ class Statistics extends Component {
           name="Sp Def"
           val={this.props.stats["special-defense"]}
         />
-      </div>
+      </section>
     );
   }
 }

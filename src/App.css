@@ -7,87 +7,54 @@
     border-radius: 2px;
 }
 
-.card header {
+.cardHeader {
     color: black;
-    font-family: 'Roboto';
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 24px;
     border-bottom: 1px solid rgba(233, 233, 233, 1);
     text-decoration: none;
-    padding-left: 24px;
-    padding-top: 17px;
-    padding-bottom: 14px;
+    padding: 17px 24px 14px;
+    font: 700 16px/24px 'Roboto';
 }
 
 .imgHolder {
     padding: 20px 28px 24px 24px;
-}
-
-.imgHolder img {
     width: 104px;
     height: 104px;
     display: block;
-    margin: auto auto;
+    margin: auto;
 }
 
 .cardList {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-gap: 8px;
-    padding: 32px 48px 0px;
-}
-
-.App {
-    max-width: 100%;
-    height: 100%;
-}
-
-#root {
-    height: 100%;
+    padding: 32px 48px 0;
 }
 
 body {
-    min-height: 100vh;
     background-color: rgba(85, 166, 156, 1);
-    min-width: 550px;
+}
+
+.navHeader {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
 }
 
 .navButton {
+    margin: 16px 72px;
     height: 64px;
     width: 64px;
     background-color: rgba(0, 0, 0, .08);
     border-radius: 64px;
-    text-align: center;
     color: rgba(255, 255, 255, 1);
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
 }
 
 .navButton:hover {
     background-color: rgba(0, 0, 0, .5);
-}
-
-.navButton span {
-    height: 16px;
-    width: 16px;
-}
-
-#forwardButton {
-    position: absolute;
-    top: 56px;
-    right: 72px;
-}
-
-#backButton {
-    position: absolute;
-    top: 56px;
-    left: 72px;
-}
-
-.searchBar {
-    padding-top: 40px;
 }
 
 .searchBox {
@@ -96,58 +63,52 @@ body {
     max-width: 624px;
     background-color: rgba(0, 0, 0, 0.04);
     border-radius: 7px;
+    display: flex;
+    flex-grow: 1;
 }
 
 .searchBox span {
+    font-size: 22px;
     padding: 40px;
-    height: 17px;
-    width: 17px;
+    height: 22px;
+    width: 22px;
     color: rgba(255, 255, 255, 1);
     vertical-align: top;
 }
 
-.searchBox #clearSearch {
+#clearSearch {
     float: right;
-    padding: 39px 32px 35px;
-    height: 22px;
-    width: 22px;
-    font-size: 22px;
 }
 
-.searchBox input {
+#searchTerm {
     width: 280px;
-    font-family: 'Roboto';
-    font-size: 72px;
-    font-weight: bold;
     color: rgba(0, 0, 0, 0.5);
-    text-align: left;
-    line-height: 24px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    margin: 5px;
     outline: none;
+    flex-grow: 1;
+    font: 700 72px/24px 'Roboto';
 }
 
 #bottomNavBar {
     display: none;
 }
 
-.card .pkmnType {
+.pkmnType {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
     height: 20px;
     width: 25px;
-    font-family: 'San Francisco';
-    font-size: 12px;
     margin: 4px;
     padding: 4px;
+    font: 12px 'San Francisco';
 }
 
-.card .pkmnTypesHolder {
+.pkmnTypesHolder {
     position: absolute;
-    right: 0px;
     display: inline-block;
+    right: 0px;
     padding-right: 24px;
 }
 
@@ -160,25 +121,14 @@ body {
     margin: 168px auto 72px;
 }
 
-.detailsContainer {
-    position: relative;
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 784px;
-    background-color: rgba(255, 255, 255, 1);
-}
-
 .detailsNameJumbo {
     position: absolute;
     top: -88px;
     height: 24px;
     width: 100%;
-    font-family: 'Roboto';
-    font-size: 72px;
-    font-weight: bold;
     color: rgba(255, 255, 255, 1);
     text-align: center;
-    line-height: 24px;
+    font: 700 72px/24px 'Roboto';
 }
 
 .details > header {
@@ -186,75 +136,66 @@ body {
     border-bottom: 1px solid rgba(233, 233, 233, 1);
 }
 
-.detailsHeader {
+.detailsName {
     position: absolute;
     top: 17px;
     left: 24px;
 }
 
 .details .nameDetail {
-    font-family: 'Roboto';
-    font-size: 16px;
-    font-weight: bold;
     color: rgba(0, 0, 0, 0.85);
     text-align: left;
-    line-height: 24px;
     padding-right: 12px;
+    font: 700 16px/24px 'Roboto';
 }
 
 .details .idDetail {
-    font-family: 'Roboto';
-    font-size: 16px;
-    font-weight: bold;
     color: rgba(0, 0, 0, 0.32);
     text-align: left;
-    line-height: 24px;
+    font: 700 16px/24px 'Roboto';
 }
 
 .details .pkmnType {
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
     height: 22px;
     width: 20px;
-    font-family: 'San Francisco';
-    font-size: 12px;
-    margin: 4px;
-    padding: 4px;
     line-height: 20px;
 }
 
 .details .pkmnTypesHolder {
-    position: absolute;
     top: 19px;
-    right: 0px;
-    display: inline-block;
     padding-right: 16px;
 }
 
+.detailsContainer {
+    position: relative;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 784px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+}
+
 .detailsImg {
-    display: block;
-    position: absolute;
-    top: 90px;
+    display: inline-block;
+    position: relative;
+    top: 32px;
     left: 72px;
     height: 130px;
     width: 130px;
 }
 
 .statsBox {
-    position: absolute;
-    padding-right: 72px;
-    right: 0px;
-    padding-top: 34px;
+    display: inline-block;
+    position: relative;
+    left: 164px;
+    top: 32px;
 }
 
 .statName {
-    font-family: 'Roboto';
-    font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-align: left;
-    line-height: 22px;
-    font-weight: bold;
+    font: 700 16px/22px 'Roboto';
 }
 
 .statBarHolder {
@@ -275,23 +216,26 @@ body {
     background-color: rgba(0, 146, 0, 1);
 }
 
-.statProgressBarValue span {
+.statBarValueOverlay {
     padding-left: 6px;
     color: rgba(255, 255, 255, 1);
-    font-family: 'Roboto';
-    font-size: 14px;
+    font: 14px 'Roboto';
+}
+
+.detailsBackButton {
+    position: absolute;
+    top: 0px;
+    margin-top: 56px;
 }
 
 .detailsBio {
-    position: absolute;
-    top: 268px;
+    position: relative;
+    top: 64px;
     left: 56px;
     width: 552px;
-    font-family: 'Roboto';
-    font-size: 16px;
     color: rgba(0, 0, 0, 0.85);
     text-align: left;
-    line-height: 24px;
+    font: 16px/24px 'Roboto';
 }
 
 .detailsGenus {
@@ -300,35 +244,24 @@ body {
 }
 
 .detailsSection {
-    position: absolute;
+    position: relative;
     left: 56px;
+    top: 96px;
 }
 
-#profile {
-    top: 380px;
-}
-
-#whenAttacked {
-    top: 660px;
-}
-
-.detailsSection header {
-    background-color: pink;
+.detailsSectionHeader {
     height: 32px;
     width: 584px;
     color: white;
     margin: 0px -16px;
 }
 
-.detailsSection header span {
+.detailsSectionHeader span {
     display: inline-block;
     padding: 4px 16px;
-    font-family: 'Roboto';
-    font-size: 16px;
-    font-weight: bold;
     color: rgba(255, 255, 255, 1);
     text-align: left;
-    line-height: 24px;
+    font: 700 16px/24px 'Roboto';
 }
 
 .profileEntry {
@@ -336,11 +269,9 @@ body {
     width: 276px;
     display: inline-block;
     font-size: 16px;
-    font-family: 'Roboto';
-    font-size: 16px;
     color: rgba(0, 0, 0, 0.85);
     text-align: left;
-    line-height: 24px;
+    font: 16px/24px 'Roboto';
 }
 
 .entryName {
@@ -360,7 +291,6 @@ body {
     width: 117px;
     overflow-wrap: normal;
 }
-
 
 @media screen and (max-width: 790px) {
     body {
@@ -392,56 +322,46 @@ body {
         background-color: rgba(64, 126, 118, 0.8);
     }
 
+    .navHeader {
+        padding-top: 0px;
+    }
+
     .navButton {
+        position: fixed;
         height: 48px;
         width: 96px;
         background-color: rgba(0, 0, 0, 0);
         border-radius: 0px;
         z-index: 1;
-        padding: 0px 16px;
+        margin: 0px;
+        bottom: 0px;
     }
 
     #forwardButton {
-        position: fixed;
-        bottom: 0px;
-        top: auto;
         right: 32px;
-        text-align: right;
     }
 
     #backButton {
-        position: fixed;
-        bottom: 0px;
-        top: auto;
         left: 32px;
-        text-align: left;
-    }
-
-    .searchBar {
-        position: fixed;
-        padding-top: 16px;
-        width: 100%;
-        z-index: 1;
-        background-color: rgba(85, 166, 156, 1);
-        height: 56px;
     }
 
     .searchBox {
+        position: fixed;
+        width: calc(100% - 16px);
+        z-index: 1;
         height: 48px;
-        width: 100%;
+        margin-top: 16px;
     }
 
-    .searchBox input {
-        width: 75%;
-        font-size: 18px;
-        margin: 12px;
+    #searchTerm {
+        font-size: 32px;
     }
 
     .searchBox span {
         padding: 16px;
     }
 
-    .searchBox #clearSearch {
+    #clearSearch {
         visibility: hidden;
     }
 
@@ -449,7 +369,7 @@ body {
         display: none;
     }
 
-    .details .pkmnTypesHolder {
+    .pkmnTypesHolder {
         left: 16px;
     }
 
@@ -474,7 +394,7 @@ body {
         display: none;
     }
 
-    .detailsHeader {
+    .detailsName {
         position: fixed;
         top: 26px;
         left: 56px;
@@ -500,12 +420,12 @@ body {
     }
 
     .statsBox {
-        position: relative;
         padding-right: 8px;
         padding-left: 8px;
-        right: auto;
         padding-top: 34px;
-        width: 95%;
+        width: calc(100% - 16px);
+        left: auto;
+        top: auto;
     }
 
     .statName {
@@ -535,12 +455,11 @@ body {
         left: 16px;
     }
 
-    .detailsSection header {
+    .detailsSectionHeader {
         width: auto;
         color: white;
         margin: 0px;
         margin-right: 24px;
-
     }
 
     #profile {

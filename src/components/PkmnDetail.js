@@ -41,9 +41,9 @@ class PkmnDetail extends Component {
         "rgb(" + this.state.baseColor.toString() + ")";
       return (
         <section className="details">
-          <div className="detailsNameJumbo">{this.state.name}</div>
+          <span className="detailsNameJumbo">{this.state.name}</span>
           <header>
-            <div className="detailsHeader">
+            <div className="detailsName">
               <span className="nameDetail">{this.state.name}</span>
               <span className="idDetail">#{this.state.id}</span>
             </div>
@@ -53,22 +53,25 @@ class PkmnDetail extends Component {
             </div>
           </header>
           <section className="detailsContainer">
-            <img
-              id={this.state.name + "imageID"}
-              className="detailsImg"
-              src={this.state.image}
-              alt={this.state.name + " image"}
-            />
-            <Statistics
-              baseColor={this.state.baseColor}
-              stats={this.state.stats}
-            />
+            <section>
+              <img
+                id={this.state.name + "imageID"}
+                className="detailsImg"
+                src={this.state.image}
+                alt={this.state.name + " image"}
+              />
+              <Statistics
+                baseColor={this.state.baseColor}
+                stats={this.state.stats}
+              />
+            </section>
             <section className="detailsBio">
               <div className="detailsGenus">{this.state.genus}</div>
               <div className="detailsDescription">{this.state.description}</div>
             </section>
             <section id="profile" className="detailsSection">
               <header
+                className="detailsSectionHeader"
                 style={{
                   backgroundColor:
                     "rgb(" + this.state.baseColor.toString() + ")"
@@ -76,30 +79,22 @@ class PkmnDetail extends Component {
               >
                 <span>Profile</span>
               </header>
-              <div>
-                <ProfileEntry
-                  name="Height"
-                  val={this.state.height}
-                  postfix="m"
-                />
-                <ProfileEntry
-                  name="Weight"
-                  val={this.state.weight}
-                  postfix="kg"
-                />
-                <ProfileEntry name="Catch Rate" val="0%" />
-                <ProfileEntry name="Gender Ratio" val="M-50% F-50%" />
-                <ProfileEntry
-                  name="Egg Groups"
-                  val={this.state["egg_groups"]}
-                />
-                <ProfileEntry name="Hatch Steps" val="5100" />
-                <ProfileEntry name="Abilities" val={this.state.abilities} />
-                <ProfileEntry name="EVs" val="2" postfix="HP" />
-              </div>
+              <ProfileEntry name="Height" val={this.state.height} postfix="m" />
+              <ProfileEntry
+                name="Weight"
+                val={this.state.weight}
+                postfix="kg"
+              />
+              <ProfileEntry name="Catch Rate" val="0%" />
+              <ProfileEntry name="Gender Ratio" val="M-50% F-50%" />
+              <ProfileEntry name="Egg Groups" val={this.state["egg_groups"]} />
+              <ProfileEntry name="Hatch Steps" val="5100" />
+              <ProfileEntry name="Abilities" val={this.state.abilities} />
+              <ProfileEntry name="EVs" val="2" postfix="HP" />
             </section>
             <section id="whenAttacked" className="detailsSection">
               <header
+                className="detailsSectionHeader"
                 style={{
                   backgroundColor:
                     "rgb(" + this.state.baseColor.toString() + ")"

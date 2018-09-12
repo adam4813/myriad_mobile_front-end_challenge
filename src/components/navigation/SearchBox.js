@@ -13,7 +13,7 @@ class SearchBox extends Component {
     if (e.key === "Enter") {
       if (e.target.value !== "") {
         this.props.history.push("/search/" + e.target.value + "/");
-        this.props.setSearchPage(e.target.value);
+        this.props.setSearchTerm(e.target.value);
       } else {
         this.clearSearch();
       }
@@ -22,7 +22,7 @@ class SearchBox extends Component {
 
   clearSearch = () => {
     this.searchNameRef.current.value = "";
-    this.props.setSearchPage("");
+    this.props.setSearchTerm("");
     this.props.history.push("/");
   };
 
@@ -52,27 +52,25 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <div className="searchBar">
-        <div className="searchBox">
-          <span className="fa fa-search" />
-          <input
-            id="searchTerm"
-            type="text"
-            placeholder="Pokedex"
-            onKeyUp={this.handleKeyUp}
-            onBlur={this.handleOnBlur}
-            onChange={this.handleOnChange}
-            defaultValue={this.state.name}
-            ref={this.searchNameRef}
-          />
-          <span
-            className="fa fa-times-circle"
-            id="clearSearch"
-            style={{ display: "none" }}
-            onClick={this.clearSearch}
-            ref={this.clearSearchRef}
-          />
-        </div>
+      <div className="searchBox">
+        <span className="fa fa-search" />
+        <input
+          id="searchTerm"
+          type="text"
+          placeholder="Pokedex"
+          onKeyUp={this.handleKeyUp}
+          onBlur={this.handleOnBlur}
+          onChange={this.handleOnChange}
+          defaultValue={this.state.name}
+          ref={this.searchNameRef}
+        />
+        <span
+          className="fa fa-times-circle"
+          id="clearSearch"
+          style={{ display: "none" }}
+          onClick={this.clearSearch}
+          ref={this.clearSearchRef}
+        />
       </div>
     );
   }

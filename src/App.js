@@ -5,6 +5,7 @@ import PkmnDetail from "./components/PkmnDetail";
 import CardList from "./components/CardList";
 
 import NavHeader from "./components/NavHeader";
+import NavButton from "./components/navigation/NavButton";
 
 import "./App.css";
 
@@ -41,7 +42,7 @@ class App extends Component {
     }
   };
 
-  setSearchPage = searchTerm => {
+  setSearchTerm = searchTerm => {
     if (searchTerm !== null) {
       this.setState({ searchTerm: "search/" + searchTerm + "/" });
     }
@@ -50,46 +51,52 @@ class App extends Component {
     }
   };
 
-  renderMainRouteWithPath(path, search) {
+  renderCardListFragment = props => {
     return (
-      <Route path={path}>
-        <React.Fragment>
-          <NavHeader
-            prevPage={"/" + this.state.searchTerm + this.state.prevPage}
-            nextPage={"/" + this.state.searchTerm + this.state.nextPage}
-            setSearchPage={this.setSearchPage}
-            searchBox={true}
-          />
-          <CardList
-            setNextPage={this.setNextPage}
-            setPrevPage={this.setPrevPage}
-            setCurrentPage={this.setCurrentPage}
-            setLastPage={this.setLastPage}
-            lastPage={this.lastPage}
-            search={search}
-          />
-          <div id="bottomNavBar" />
-        </React.Fragment>
-      </Route>
+      <React.Fragment>
+        <NavHeader
+          prevPage={"/" + this.state.searchTerm + this.state.prevPage}
+          nextPage={"/" + this.state.searchTerm + this.state.nextPage}
+          setSearchTerm={this.setSearchTerm}
+        />
+        <CardList
+          setNextPage={this.setNextPage}
+          setPrevPage={this.setPrevPage}
+          setCurrentPage={this.setCurrentPage}
+          setLastPage={this.setLastPage}
+          lastPage={this.lastPage}
+        />
+        <div id="bottomNavBar" />
+      </React.Fragment>
     );
-  }
+  };
+
+  renderDetailsFragment = props => {
+    return (
+      <React.Fragment>
+        <NavButton
+          link={"/" + this.state.searchTerm + this.state.currPage}
+          id="backButton"
+          direction="left"
+          classNameExtra="detailsBackButton"
+        />
+        <PkmnDetail />
+      </React.Fragment>
+    );
+  };
 
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route path="/pokemon/:id">
-            <React.Fragment>
-              <NavHeader
-                prevPage={"/" + this.state.searchTerm + this.state.currPage}
-                searchBox={false}
-                classNameExtra="detailsBackButton"
-              />
-              <Route component={PkmnDetail} />
-            </React.Fragment>
-          </Route>
-          {this.renderMainRouteWithPath("/search/:name/:page?", true)}
-          {this.renderMainRouteWithPath("/:page?", false)}
+          <Route path="/pokemon/:id" render={this.renderDetailsFragment} />
+          <Switch>
+            <Route
+              path="/search/:name/:page?"
+              render={this.renderCardListFragment}
+            />
+            <Route path="/:page?" render={this.renderCardListFragment} />
+          </Switch>
         </Switch>
       </div>
     );

@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 class NavButton extends Component {
   render() {
     return (
-      <Link to={this.props.link} style={{ textDecoration: "none" }}>
-        <div
-          className={"navButton " + this.props.classNameExtra}
-          id={this.props.id}
-        >
-          <div>
-            <span className={"fa fa-arrow-" + this.props.direction} />
-          </div>
-        </div>
+      <Link
+        className={
+          "navButton" + (this.props.classNameExtra
+            ? (" " + this.props.classNameExtra)
+            : "")
+        }
+        id={this.props.id}
+        to={this.props.link}
+        style={{ textDecoration: "none" }}
+      >
+          <span className={"fa fa-arrow-" + this.props.direction} />
       </Link>
     );
   }

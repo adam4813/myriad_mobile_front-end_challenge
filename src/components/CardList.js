@@ -7,7 +7,10 @@ import Card from "./Card";
 class CardList extends Component {
   state = {
     pkmnList: [],
-    page: this.props.match.params.page ? this.props.match.params.page : 1,
+    page: parseInt(
+      this.props.match.params.page ? this.props.match.params.page : 1,
+      10
+    ),
     name: this.props.match.params.name ? this.props.match.params.name : ""
   };
 
