@@ -33,14 +33,6 @@ class PkmnDetail extends Component {
     this.getDetails();
   }
 
-  handleOnLoad = e => {
-    let color = window.colorThief.getColor(
-      document.getElementById(this.state.name + "imageID")
-    );
-    console.log(color);
-    this.setState({ baseColor: color });
-  };
-
   render() {
     if (this.state.loading) {
       return null;
@@ -48,7 +40,7 @@ class PkmnDetail extends Component {
       document.getElementsByTagName("body")[0].style.backgroundColor =
         "rgb(" + this.state.baseColor.toString() + ")";
       return (
-        <div className="details">
+        <section className="details">
           <div className="detailsNameJumbo">{this.state.name}</div>
           <header>
             <div className="detailsHeader">
@@ -60,7 +52,7 @@ class PkmnDetail extends Component {
               <PkmnType type={this.state.types[0]} />
             </div>
           </header>
-          <div className="detailsContainer">
+          <section className="detailsContainer">
             <img
               id={this.state.name + "imageID"}
               className="detailsImg"
@@ -71,11 +63,11 @@ class PkmnDetail extends Component {
               baseColor={this.state.baseColor}
               stats={this.state.stats}
             />
-            <div className="detailsBio">
+            <section className="detailsBio">
               <div className="detailsGenus">{this.state.genus}</div>
               <div className="detailsDescription">{this.state.description}</div>
-            </div>
-            <div id="profile" className="detailsSection">
+            </section>
+            <section id="profile" className="detailsSection">
               <header
                 style={{
                   backgroundColor:
@@ -105,8 +97,8 @@ class PkmnDetail extends Component {
                 <ProfileEntry name="Abilities" val={this.state.abilities} />
                 <ProfileEntry name="EVs" val="2" postfix="HP" />
               </div>
-            </div>
-            <div id="whenAttacked" className="detailsSection">
+            </section>
+            <section id="whenAttacked" className="detailsSection">
               <header
                 style={{
                   backgroundColor:
@@ -115,9 +107,9 @@ class PkmnDetail extends Component {
               >
                 <span>Damage When Attacked</span>
               </header>
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
       );
     }
   }

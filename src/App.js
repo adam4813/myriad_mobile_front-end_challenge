@@ -41,10 +41,6 @@ class App extends Component {
     }
   };
 
-  getLastPage = () => {
-    return this.state.lastPage;
-  };
-
   setSearchPage = searchTerm => {
     if (searchTerm !== null) {
       this.setState({ searchTerm: "search/" + searchTerm + "/" });
@@ -57,7 +53,7 @@ class App extends Component {
   renderMainRouteWithPath(path, search) {
     return (
       <Route path={path}>
-        <div>
+        <React.Fragment>
           <NavHeader
             prevPage={"/" + this.state.searchTerm + this.state.prevPage}
             nextPage={"/" + this.state.searchTerm + this.state.nextPage}
@@ -69,12 +65,11 @@ class App extends Component {
             setPrevPage={this.setPrevPage}
             setCurrentPage={this.setCurrentPage}
             setLastPage={this.setLastPage}
-            getLastPage={this.getLastPage}
-            setSearchPage={this.setSearchPage}
+            lastPage={this.lastPage}
             search={search}
           />
           <div id="bottomNavBar" />
-        </div>
+        </React.Fragment>
       </Route>
     );
   }
@@ -84,13 +79,14 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route path="/pokemon/:id">
-            <div>
+            <React.Fragment>
               <NavHeader
                 prevPage={"/" + this.state.searchTerm + this.state.currPage}
                 searchBox={false}
+                classNameExtra="detailsBackButton"
               />
               <Route component={PkmnDetail} />
-            </div>
+            </React.Fragment>
           </Route>
           {this.renderMainRouteWithPath("/search/:name/:page?", true)}
           {this.renderMainRouteWithPath("/:page?", false)}

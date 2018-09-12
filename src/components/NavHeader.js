@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 
 import SearchBox from "./navigation/SearchBox";
-import ForwardButton from "./navigation/ForwardButton";
-import BackButton from "./navigation/BackButton";
+import NavButton from "./navigation/NavButton";
 
 class NavHeader extends Component {
   render() {
     return (
       <header>
-        {this.props.prevPage && <BackButton prevPage={this.props.prevPage} />}
+        {this.props.prevPage && (
+          <NavButton
+            link={this.props.prevPage}
+            id="backButton"
+            direction="left"
+            classNameExtra={this.props.classNameExtra}
+          />
+        )}
         {this.props.searchBox && (
           <SearchBox setSearchPage={this.props.setSearchPage} />
         )}
         {this.props.nextPage && (
-          <ForwardButton nextPage={this.props.nextPage} />
+          <NavButton
+            link={this.props.nextPage}
+            id="forwardButton"
+            direction="right"
+            classNameExtra={this.props.classNameExtra}
+          />
         )}
       </header>
     );
